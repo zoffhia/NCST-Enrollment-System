@@ -17,7 +17,7 @@
             <th>Email</th>
             <th>Student Type</th>
             <th>Course</th>
-            <th>Status</th>
+            <th>Requirements Status</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -28,7 +28,7 @@
             <td>juan@example.com</td>
             <td>Transferee</td>
             <td>BS Computer Science</td>
-            <td class="text-yellow-600 font-semibold">Pending</td>
+            <td class="text-yellow-600 font-semibold">Approved</td>
             <td>
               <button onclick="openModal('modal')" class="bg-blue-600 text-white px-3 py-1 rounded mr-2 hover:bg-blue-700">View</button>
               <button class="bg-gray-500 text-white px-3 py-1 rounded hover:bg-gray-600">Archive</button>
@@ -87,34 +87,12 @@
         <p><strong>Full Name:</strong> Juan Dela Cruz</p>
         <p><strong>Email:</strong> juan@example.com</p>
         <p><strong>Program:</strong> BS Computer Science</p>
-        <p><strong>Status:</strong> Pending</p>
+        <p><strong>Requirement Status:</strong> Approved</p>
         <!--Information that was submitted by the student through the admission form will be displayed here-->
-
-        <!-- Document Checklist -->
-        <h3 class="mt-4 font-semibold">Requirements</h3>
-        <div class="space-y-2">
-        <label class="flex items-center space-x-2">
-            <input type="checkbox" class="requirement-checkbox">
-            <span>Birth Certificate</span>
-        </label>
-        <label class="flex items-center space-x-2">
-            <input type="checkbox" class="requirement-checkbox">
-            <span>Report Card (Form 138)</span>
-        </label>
-        <label class="flex items-center space-x-2">
-            <input type="checkbox" class="requirement-checkbox">
-            <span>Certificate of Good Moral</span>
-        </label>
-        <label class="flex items-center space-x-2">
-            <input type="checkbox" class="requirement-checkbox">
-            <span>2x2 ID Picture</span>
-        </label>
+        <button onclick="approveStudent()" id="approveBtn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Confirm Slot</button>
+        <button onclick="closeModal('modal')" class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500">Close</button>
     </div>
 
-    <div class="mt-4 flex justify-end space-x-2">
-      <button onclick="approveStudent()" id="approveBtn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" disabled>Approve</button>
-      <button onclick="closeModal('modal')" class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500">Close</button>
-    </div>
   </div>
 </div>
 
@@ -140,11 +118,6 @@ checkboxes.forEach(checkbox => {
   });
 
   function openModal(id) {
-    // Reset checkboxes when opening modal
-    const checkboxes = document.querySelectorAll('.requirement-checkbox');
-    checkboxes.forEach(checkbox => {
-      checkbox.checked = false;
-    });
     // Reset approve button state
     const approveBtn = document.getElementById('approveBtn');
     if (approveBtn) {
